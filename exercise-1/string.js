@@ -47,11 +47,16 @@ function snake_case(str) {
 
     const array = str.split(" ");
     for (let i = 0; i < array.length;) {
-        array[i] = ucfirst(array[i++]);
+        array[i] = array[i++];
     }
     return array.join("_");
 }
-console.log(snake_case('capitalize test'));
+console.log(snake_case('toggle case is the coolest'));
+console.log(snake_case('toggleCase is the coolest'));
+console.log(snake_case('ToggleCase is the 3oolest'));
+console.log(snake_case('ToggleCaseIsTheCool3st'));
+console.log(snake_case('ToggleCase is_the coolest'));
+console.log(snake_case(' toggleCase'));
 console.log(snake_case(''));
 console.log(snake_case(null));
 console.log(snake_case({}));
