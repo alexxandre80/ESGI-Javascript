@@ -37,7 +37,7 @@ function camelCase(str) {
     }
     return array.join("");
 }
-console.log(camelCase('capitalize test'));
+console.log(camelCase('ToggleCase is_the coolest'));
 console.log(camelCase(''));
 console.log(camelCase(null));
 console.log(camelCase({}));
@@ -45,7 +45,7 @@ console.log(camelCase({}));
 function snake_case(str) {
     if (typeof str !== "string" || str.length === 0) return "";
 
-    const array = str.toLowerCase().split(" ");
+    const array = str.split(" ");
     for (let i = 0; i < array.length;) {
         array[i] = ucfirst(array[i++]);
     }
