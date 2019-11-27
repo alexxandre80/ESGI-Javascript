@@ -15,7 +15,7 @@ function capitalize(str) {
 function camelCase(str) {
     if (typeof str !== "string" || str.length === 0) return "";
     for (let j = 0; j < str.length; j++) {
-        str = str.replace(/[^A-Za-z]/, "");
+        str = str.replace(/[^A-Za-z0-9]/gi, " ");
     }
     const array = str.toLowerCase().split(" ");
     for (let i = 0; i < array.length;) {
@@ -26,23 +26,38 @@ function camelCase(str) {
 
 function snake_case(str) {
     if (typeof str !== "string" || str.length === 0) return "";
-
-    const array = str.toLowerCase().split(" ");
-    for (let i = 0; i < array.length;) {
-        array[i] = array[i++];
-    }
-    return array.join("_");
+   // const array = str.toLowerCase().split(" ");
+    //for (let i = 0; i < array.length;) {
+    //    array[i] = array[i++];
+    //}
+    //return array.join("_");
+    return str.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
 }
+
 function leet(str) {
     if (typeof str !== "string" || str.length === 0) return "";
-    const voyelle = ["a","e","i","o","u"];
-    const chiffre = ["4","3","1","0","(_)"];
-    str = str.replace(voyelle, chiffre);
-    const array = str.split(" ");
-    for (let i = 0; i < array.length;) {
-        array[i] = array[i++];
-    }
-    return array.join(" ");
+    return str.replace(/[aeiouy]/ig,function (car){
+        switch (car) {
+            case "A":
+            case "a":
+                return "4";
+            case "E":
+            case "e":
+                return "3";
+            case "I":
+            case "i":
+                return "1";
+            case "O":
+            case "o":
+                return "0";
+            case "U":
+            case "u":
+                return "(_)";
+            case "Y":
+            case "y":
+                return "7";
+        }
+    })
 }
 console.log(leet('anaconda'));
 console.log(leet('anacoNDa'));
@@ -53,3 +68,36 @@ console.log(leet('mon travail'));
 console.log(leet(''));
 console.log(leet(null));
 console.log(leet({}));
+
+function verlan(str) {
+    if (typeof str !== "string" || str.length === 0) return "";
+    return str.split(" ").map(function (word) {
+        return word.split("").reverse().join('');
+    }).join(" ");
+}
+console.log(verlan("hello world"));
+
+function yoda(str) {
+    if (typeof str !== "string" || str.length === 0) return "";
+    return str.split(" ").reverse().join(" ");
+}
+console.log(yoda("hello world"));
+
+function vig(str,code) {
+    if (typeof str !== "string" || str.length === 0) return "";
+    while(code.length < str.length){
+        code += code;
+    }
+    return str.split("").map(function (car,index) {
+        car = car.toLowerCase();
+        const carCode = car.charCodeAt(0) - "a".charCodeAt(0);
+
+        if(carCode<0 || carCode > 25) return car;
+        const codeCode = code[index].charCodeAt(0) - "a".charCodeAt(0);
+
+        const encodedCode = (carCode + codeCode)%26;
+
+        return String.fromCharCode(encodedCode + 'a'.charCodeAt(0));
+    }).join('');
+}
+
