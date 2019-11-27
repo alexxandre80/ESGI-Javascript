@@ -3,14 +3,6 @@ function ucfirst(str) {
     return str[0].toUpperCase() + str.substring(1);
 }
 
-console.log(ucfirst('ucfirst'));
-console.log(ucfirst('Ucfirst'));
-console.log(ucfirst('5cfirst'));
-console.log(ucfirst('ucfirst test'));
-console.log(ucfirst(''));
-console.log(ucfirst(null));
-console.log(ucfirst({}));
-
 function capitalize(str) {
     if (typeof str !== "string" || str.length === 0) return "";
     const array = str.toLowerCase().split(" ");
@@ -20,17 +12,9 @@ function capitalize(str) {
     return array.join(" ");
 }
 
-console.log(capitalize('capitalize'));
-console.log(capitalize('Capitalize'));
-console.log(capitalize('5apitalize'));
-console.log(capitalize('capitalize test'));
-console.log(capitalize(''));
-console.log(capitalize(null));
-console.log(capitalize({}));
-
 function camelCase(str) {
     if (typeof str !== "string" || str.length === 0) return "";
-
+    str = str.replace("_", " ");
     const array = str.toLowerCase().split(" ");
     for (let i = 0; i < array.length;) {
         array[i] = ucfirst(array[i++]);
