@@ -14,33 +14,42 @@ function capitalize(str) {
 
 function camelCase(str) {
     if (typeof str !== "string" || str.length === 0) return "";
-    str = str.replace("_", " ");
+    for (let j = 0; j < str.length; j++) {
+        str = str.replace(/[^A-Za-z]/, "");
+    }
     const array = str.toLowerCase().split(" ");
     for (let i = 0; i < array.length;) {
         array[i] = ucfirst(array[i++]);
     }
     return array.join("");
 }
-console.log(camelCase('ToggleCase is_the coolest'));
-console.log(camelCase(''));
-console.log(camelCase(null));
-console.log(camelCase({}));
 
 function snake_case(str) {
     if (typeof str !== "string" || str.length === 0) return "";
 
-    const array = str.split(" ");
+    const array = str.toLowerCase().split(" ");
     for (let i = 0; i < array.length;) {
         array[i] = array[i++];
     }
     return array.join("_");
 }
-console.log(snake_case('toggle case is the coolest'));
-console.log(snake_case('toggleCase is the coolest'));
-console.log(snake_case('ToggleCase is the 3oolest'));
-console.log(snake_case('ToggleCaseIsTheCool3st'));
-console.log(snake_case('ToggleCase is_the coolest'));
-console.log(snake_case(' toggleCase'));
-console.log(snake_case(''));
-console.log(snake_case(null));
-console.log(snake_case({}));
+function leet(str) {
+    if (typeof str !== "string" || str.length === 0) return "";
+    const voyelle = ["a","e","i","o","u"];
+    const chiffre = ["4","3","1","0","(_)"];
+    str = str.replace(voyelle, chiffre);
+    const array = str.split(" ");
+    for (let i = 0; i < array.length;) {
+        array[i] = array[i++];
+    }
+    return array.join(" ");
+}
+console.log(leet('anaconda'));
+console.log(leet('anacoNDa'));
+console.log(leet('leet'));
+console.log(leet('yoda'));
+console.log(leet('evaluation'));
+console.log(leet('mon travail'));
+console.log(leet(''));
+console.log(leet(null));
+console.log(leet({}));
