@@ -47,7 +47,7 @@ function leet(str) {
 console.log(leet('anaconda'));
 console.log(leet('anacoNDa'));
 console.log(leet('leet'));
-console.log(leet('yoda'));
+console.log(leet('yodo'));
 console.log(leet('evaluation'));
 console.log(leet('mon travail'));
 console.log(leet(''));
