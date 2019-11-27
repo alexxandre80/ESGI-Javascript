@@ -89,7 +89,7 @@ function vig(str,code) {
         code += code;
     }
     let codeIndex = 0;
-    return str.split("").map(function (car,index) {
+    return str.split("").map(function (car) {
         car = car.toLowerCase();
         const carCode = car.charCodeAt(0) - "a".charCodeAt(0);
 
