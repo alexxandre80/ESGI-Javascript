@@ -1,9 +1,13 @@
-function type_check_v1(arg1,arg2) {
-    const typeofarg1 = typeof arg1;
-    const typeofarg2 = typeof arg2;
-    return typeofarg1===typeofarg2;
+function type_check_v1(vari,type) {
+   switch(typeof vari){
+       case 'object':
+           if(Array.isArray(vari)) return type === "array";
+           if(vari === null) return type === "null";
+       default:
+           return typeof vari === type;
+   }
 }
-console.log(type_check_v1(arg1=42,arg2='hello'));
+
 function type_check_v2() {
 
 }
