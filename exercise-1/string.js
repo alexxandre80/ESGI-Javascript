@@ -118,4 +118,5 @@ function prop_access(obj, str) {
         }
         temp = temp[access[i]];
     }
+    return temp;
 }
