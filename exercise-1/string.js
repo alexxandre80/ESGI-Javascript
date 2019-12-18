@@ -102,3 +102,20 @@ function vig(str,code) {
     }).join('');
 }
 
+function prop_access(obj, str) {
+    if (str === "" || str === null || typeof obj !== "object") {
+        return obj;
+    }
+    let access = str.trim().split('.');
+    let temp = obj;
+    for (let i = 0; access.length; i++) {
+        if (i == access.length) {
+            return temp;
+        }
+        if (!Object.prototype.hasOwnProperty.call(temp, access[i])) {
+            console.log(str + " not exist");
+            return false;
+        }
+        temp = temp[access[i]];
+    }
+}
