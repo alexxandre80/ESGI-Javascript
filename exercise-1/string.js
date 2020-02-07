@@ -103,20 +103,24 @@ function vig(str,code) {
 }
 
 function prop_access(obj, str) {
-    if (str === "" || str === null || typeof obj !== "object") {
+    if (typeof str != "string"){
         return obj;
     }
-    let access = str.trim().split('.');
-    let temp = obj;
-    for (let i = 0; access.length; i++) {
-        if (i == access.length) {
-            return temp;
-        }
-        if (!Object.prototype.hasOwnProperty.call(temp, access[i])) {
-            console.log(str + " not exist");
-            return false;
-        }
-        temp = temp[access[i]];
+    if(typeof obj != 'object' || obj == null) {
+        console.log(str + ' not exist');
+        return;
     }
-    return temp;
+    if (str === '') {
+        return obj;
+    }
+    const props = str.split('.');
+    let propriete = obj;
+    props.forEach(function (prop) {
+        if(!propriete.hasOwnProperty(prop)) {
+            console.log(str + ' not exist');
+            return;
+        }
+        propriete = propriete[prop];
+    });
+    return propriete;
 }
