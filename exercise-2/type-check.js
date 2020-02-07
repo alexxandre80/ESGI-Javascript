@@ -31,9 +31,15 @@ function type_check_v2(vari,type) {
     return true;
 }
 
-function type_check_v3() {
-
+function type_check(input, conf = {type: "", properties: {}, value: "", enum: []}) {
+    if (Object.prototype.hasOwnProperty.call(conf, "type") && type_check_v1(input, conf.type)) {
+        if (Object.prototype.hasOwnProperty.call(conf, "properties")) {
+            for (let propName in conf.properties) {
+                if (!type_check(input[propName], conf.properties[propName]))
+                    return false
+            }
+            return true
+        }
+    }
+    return type_check_v2(input, conf)
 }
-
-
-
